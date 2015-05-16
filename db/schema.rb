@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516171629) do
+ActiveRecord::Schema.define(version: 20150516174203) do
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "details",    limit: 65535
+    t.integer  "quarter_id", limit: 4
+    t.integer  "points",     limit: 4
+    t.integer  "priority",   limit: 4
+    t.integer  "completion", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "projects", ["quarter_id"], name: "index_projects_on_quarter_id", using: :btree
 
   create_table "quarters", force: :cascade do |t|
     t.integer  "year",       limit: 4
@@ -20,4 +33,5 @@ ActiveRecord::Schema.define(version: 20150516171629) do
     t.datetime "updated_at",           null: false
   end
 
+  add_foreign_key "projects", "quarters"
 end

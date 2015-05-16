@@ -6,7 +6,7 @@ class MainController < ApplicationController
   end
 
   def authenticate
-    session[:signed_in] = true if params[:password] == "sdf"
+    session[:signed_in] = true if params[:password] == ENV['APP_PASSWORD']
     redirect_to root_path
   end
 

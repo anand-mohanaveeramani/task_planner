@@ -1,34 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
-
-<p>
-  <strong>Details:</strong>
-  <%= @project.details %>
-</p>
-
-<p>
-  <strong>Quarter:</strong>
-  <%= @project.quarter %>
-</p>
-
-<p>
-  <strong>Points:</strong>
-  <%= @project.points %>
-</p>
-
-<p>
-  <strong>Priority:</strong>
-  <%= @project.priority %>
-</p>
-
-<p>
-  <strong>Completion:</strong>
-  <%= @project.completion %>
-</p>
+<%= render partial: "projects/project", locals: {project: @project} %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

@@ -1,2 +1,6 @@
-<h1>Plan page</h1>
-<p>all data here</p>
+<h2><%= @focus_quarter.name %></h2>
+<% @projects.each do |project| %>
+  <div class="row">
+    <%= render partial: "projects/project", locals: {project: @project} %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @quarter.year %>
+</p>
+
+<p>
+  <strong>Index:</strong>
+  <%= @quarter.index %>
+</p>
+
+<%= link_to 'Edit', edit_quarter_path(@quarter) %> |
+<%= link_to 'Back', quarters_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@quarter) do |f| %>
+  <% if @quarter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@quarter.errors.count, "error") %> prohibited this quarter from being saved:</h2>
+
+      <ul>
+      <% @quarter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :index %><br>
+    <%= f.number_field :index %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

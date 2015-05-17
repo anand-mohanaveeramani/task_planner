@@ -5,7 +5,6 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = focus_quarter.projects.all
-    byebug
   end
 
   # GET /projects/1

@@ -1,4 +1,4 @@
-json.array!(@leaves) do |leafe|
-  json.extract! leafe, :id, :leave_date, :member_id
-  json.url leafe_url(leafe, format: :json)
+json.array!(@leaves) do |leave|
+  json.extract! leave, :id, :leave_date, :member_id
+  json.url leave_url(leave, format: :json)
 end

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Allocations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @allocations.each do |allocation| %>
+      <tr>
+        <td><%= allocation.member %></td>
+        <td><%= allocation.project %></td>
+        <td><%= link_to 'Show', allocation %></td>
+        <td><%= link_to 'Edit', edit_allocation_path(allocation) %></td>
+        <td><%= link_to 'Destroy', allocation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Allocation', new_allocation_path %>

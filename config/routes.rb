@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :allocations
   resources :members
   resources :projects
   resources :quarters

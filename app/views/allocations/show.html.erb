@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Member:</strong>
+  <%= @allocation.member %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @allocation.project %>
+</p>
+
+<%= link_to 'Edit', edit_allocation_path(@allocation) %> |
+<%= link_to 'Back', allocations_path %>

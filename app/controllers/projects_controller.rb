@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = focus_quarter.projects.all
+    byebug
   end
 
   # GET /projects/1
@@ -14,7 +15,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = focus_quarter.projects.new(completion: 0)
   end
 
   # GET /projects/1/edit
@@ -24,7 +25,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = focus_quarter.projects.new(project_params)
 
     respond_to do |format|
       if @project.save
@@ -61,10 +62,17 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def prioritize
+    params[:projectsidslist].each_with_index do |project_id, index|
+      focus_quarter.projects.find(project_id).update_attribute(:priority, index)
+    end
+    render nothing: true
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = focus_quarter.projects.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

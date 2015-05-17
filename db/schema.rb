@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517072455) do
+ActiveRecord::Schema.define(version: 20150517082511) do
+
+  create_table "allocations", force: :cascade do |t|
+    t.integer  "member_id",  limit: 4
+    t.integer  "project_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "allocations", ["member_id"], name: "index_allocations_on_member_id", using: :btree
+  add_index "allocations", ["project_id"], name: "index_allocations_on_project_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -40,5 +50,7 @@ ActiveRecord::Schema.define(version: 20150517072455) do
     t.datetime "updated_at",           null: false
   end
 
+  add_foreign_key "allocations", "members"
+  add_foreign_key "allocations", "projects"
   add_foreign_key "projects", "quarters"
 end

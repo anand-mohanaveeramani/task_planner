@@ -2,12 +2,12 @@
 
 <p>
   <strong>Member:</strong>
-  <%= @allocation.member %>
+  <%= @allocation.member.name %>
 </p>
 
 <p>
   <strong>Project:</strong>
-  <%= @allocation.project %>
+  <%= @allocation.project.name %>
 </p>
 
 <%= link_to 'Edit', edit_allocation_path(@allocation) %> |

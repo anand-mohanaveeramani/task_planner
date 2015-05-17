@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :quarter_id %><br>
-    <%= f.text_field :quarter_id, value: (@project.quarter_id || @focus_quarter.id) %>
+    <%= f.collection_select :quarter_id, Quarter.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :points %><br>

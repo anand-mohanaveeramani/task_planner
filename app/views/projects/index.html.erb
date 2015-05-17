@@ -1,37 +1,37 @@
 <p id="notice"><%= notice %></p>
+<div class="row has-below-1">
+  <div class="col-md-12">
+    <strong class="text-large has-next">Listing Projects</strong>
+    <%= link_to 'New Project', new_project_path %>
+  </div>
+</div>
 
-<h1>Listing Projects</h1>
+<div id="projectsidslist">
+<% @projects.each do |project| %>
+  <div class="sortable" id="projectsidslist_<%= project.id %>">
+    <div class="handle cursor-move inline-block">sort</div> |
+    <div class=" inline-block" style=""><%= link_to 'E', edit_project_path(project) %> | <%= link_to 'D', project, method: :delete, data: { confirm: 'Are you sure?' } %></div> | 
+    <div class=" inline-block" style="width: 250px;"><%= link_to project.name, project %> (<%= project.completion %>)</div> |
+    <div class=" inline-block" style="width: 25px;"><%= project.points %></div> |
+    <div class=" inline-block" style=""><%= project.members.map(&:name).to_sentence %></div>
+  </div>
+<% end %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Details</th>
-      <th>Quarter</th>
-      <th>Points</th>
-      <th>Priority</th>
-      <th>Completion</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= javascript_tag do %>
+  $(function(){
+    $("#projectsidslist").sortable({
+      handle: '.handle',
+      update: function() {
+      $.ajax({
+        url: '<%= prioritize_projects_path %>',
+        type: 'post',
+        data: $('#projectsidslist').sortable('serialize')
+      });
+    }
+    });
+  });
+<% end %>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.details %></td>
-        <td><%= project.quarter.try(:name) %></td>
-        <td><%= project.points %></td>
-        <td><%= project.priority %></td>
-        <td><%= project.completion %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Project', new_project_path %>

@@ -1,6 +1,6 @@
 class MainController < ApplicationController
   def index
-    @projects = @focus_quarter.projects
+    @projects = focus_quarter.projects
   end
 
   def login

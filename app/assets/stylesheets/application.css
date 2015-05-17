@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+ .has-next   { margin-right:  5px; }
+ .has-next-1 { margin-right: 10px; }
+ .has-next-2 { margin-right: 15px; }
+ .has-next-3 { margin-right: 20px; }
+
+ .has-above   { margin-top:  5px; }
+ .has-above-1 { margin-top: 10px; }
+ .has-above-2 { margin-top: 15px; }
+ .has-above-3 { margin-top: 20px; }
+
+ .has-below   { margin-bottom:  5px; }
+ .has-below-1 { margin-bottom: 10px; }
+ .has-below-2 { margin-bottom: 15px; }
+ .has-below-3 { margin-bottom: 20px; }
+
+ .has-prev   { margin-left:  5px; }
+ .has-prev-1 { margin-left: 10px; }
+ .has-prev-2 { margin-left: 15px; }
+ .has-prev-3 { margin-left: 20px; }
+
+.text-large { font-size: 2em; }
+
+.cursor-move { cursor: move; }
+.inline-block { display: inline-block; }

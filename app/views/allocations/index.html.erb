@@ -14,8 +14,8 @@
   <tbody>
     <% @allocations.each do |allocation| %>
       <tr>
-        <td><%= allocation.member %></td>
-        <td><%= allocation.project %></td>
+        <td><%= allocation.member.name %></td>
+        <td><%= allocation.project.name %></td>
         <td><%= link_to 'Show', allocation %></td>
         <td><%= link_to 'Edit', edit_allocation_path(allocation) %></td>
         <td><%= link_to 'Destroy', allocation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

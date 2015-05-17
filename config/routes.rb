@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :allocations
   resources :members
-  resources :projects
+  resources :projects do
+    collection do
+      post :prioritize
+    end
+  end
   resources :quarters
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

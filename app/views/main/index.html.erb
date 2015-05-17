@@ -1,6 +1,6 @@
 <h2><%= @focus_quarter.name %></h2>
 <% @projects.each do |project| %>
   <div class="row">
-    <%= render partial: "projects/project", locals: {project: @project} %>
+    <%= render partial: "projects/project", locals: {project: project} %>
   </div>
 <% end %>

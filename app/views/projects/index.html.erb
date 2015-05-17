@@ -20,7 +20,7 @@
       <tr>
         <td><%= project.name %></td>
         <td><%= project.details %></td>
-        <td><%= project.quarter %></td>
+        <td><%= project.quarter.try(:name) %></td>
         <td><%= project.points %></td>
         <td><%= project.priority %></td>
         <td><%= project.completion %></td>

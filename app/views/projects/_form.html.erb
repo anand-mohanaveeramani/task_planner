@@ -21,15 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :quarter_id %><br>
-    <%= f.text_field :quarter_id %>
+    <%= f.text_field :quarter_id, value: (@project.quarter_id || @focus_quarter.id) %>
   </div>
   <div class="field">
     <%= f.label :points %><br>
     <%= f.number_field :points %>
-  </div>
-  <div class="field">
-    <%= f.label :priority %><br>
-    <%= f.number_field :priority %>
   </div>
   <div class="field">
     <%= f.label :completion %><br>

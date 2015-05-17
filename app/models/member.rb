@@ -1,7 +1,7 @@
 class Member < ActiveRecord::Base
-  has_many :allocations
+  has_many :allocations, dependent: :destroy
   has_many :projects, through: :allocations
-  has_many :leaves
+  has_many :leaves, dependent: :destroy
 
   attr_accessor :available_date
 

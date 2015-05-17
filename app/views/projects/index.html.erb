@@ -13,8 +13,8 @@
     <div class=" inline-block" style=""><%= link_to 'E', edit_project_path(project) %> | <%= link_to 'D', project, method: :delete, data: { confirm: 'Are you sure to destroy?' } %></div> | 
     <div class=" inline-block" style=""><%= project.start_date %></div> |
     <div class=" inline-block" style=""><%= project.end_date %></div> |
-    <div class=" inline-block" style="width: 250px;"><%= link_to project.name, project %> (<%= project.completion %>)</div> |
     <div class=" inline-block" style="width: 25px;"><%= project.points %></div> |
+    <div class=" inline-block" style="width: 270px;"><%= link_to project.name, project %> (<%= project.completion %>%)</div> |
     <div class=" inline-block" style=""><%= project.members.map(&:name).to_sentence %></div>
   </div>
 <% end %>

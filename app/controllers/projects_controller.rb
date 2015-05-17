@@ -4,7 +4,27 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = focus_quarter.projects.all
+    @projects = focus_quarter.projects.includes(:allocations, :members).all
+    @members = @projects.map(&:members).flatten.uniq
+    quarter_start = Date.today.beginning_of_quarter
+    @members.each { |m| m.available_date = quarter_start }
+    @projects.each do |project|
+      project_members = project.members
+      project.start_date = project_members.map(&:available_date).sort.first
+      project.pts_todo = BigDecimal(project.points)
+      date = project.start_date
+      until project.pts_todo <= 0 do
+        project_members.each do |member|
+          break if project.pts_todo <= 0
+          next if member.unavailable?(date)
+          project.pts_todo -= member.deliver_rate
+          byebug if date.nil?
+          member.available_date = member.next_available_date(date)
+        end
+        project.end_date = date
+        date = get_next_date(date)
+      end
+    end
   end
 
   # GET /projects/1
@@ -77,5 +97,13 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :details, :quarter_id, :points, :priority, :completion)
+    end
+
+    def get_next_date(date)
+      next_date = date.next
+      while holiday?(next_date)
+        next_date = next_date.next
+      end
+      next_date
     end
 end
